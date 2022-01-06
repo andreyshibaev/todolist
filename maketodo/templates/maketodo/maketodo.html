@@ -3,7 +3,9 @@
 {% block content %}
     <div class="container">
         <h1>Регистрация</h1>
-        <h2>{{ error }}</h2>
+        <div class="text_error">
+            <h3 class="badge bg-danger">{{ error }}</h3>
+        </div>
         <form action="" method="post" class="py-3">
             {% csrf_token %}
             {{ form.as_p }}

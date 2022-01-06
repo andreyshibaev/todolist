@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import TodoForm
 from .models import Todo
 
+
 def signupuser(request):
     if request.method == 'GET':
         return render(request, 'maketodo/maketodo.html', {'form': UserCreationForm()})
@@ -21,20 +22,23 @@ def signupuser(request):
                 return redirect('currenttodo')
             except IntegrityError:
                 return render(request, 'maketodo/maketodo.html',
-                              {'form': UserCreationForm(), 'error': 'User already been'})
+                              {'form': UserCreationForm(), 'error': 'Пользователь уже существует'})
         else:
             return render(request, 'maketodo/maketodo.html',
-                          {'form': UserCreationForm(), 'error': 'Password didnt match'})
+                          {'form': UserCreationForm(), 'error': 'Пароли не совпадают'})
+
 
 @login_required
 def currenttodo(request):
     todos = Todo.objects.filter(user=request.user, datecompleted__isnull=True)
-    return render(request, 'maketodo/listtodo.html', {'todos':todos})
+    return render(request, 'maketodo/listtodo.html', {'todos': todos})
+
 
 @login_required
 def completetodos(request):
     todos = Todo.objects.filter(user=request.user, datecompleted__isnull=False).order_by('datecompleted')
     return render(request, 'maketodo/completedtodos.html', {'todos': todos})
+
 
 @login_required
 def logoutuser(request):
@@ -50,7 +54,8 @@ def loginuser(request):
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
             return render(request, 'maketodo/login.html',
-                          {'form': AuthenticationForm(), 'error': 'user and password dont match'})
+                          {'form': AuthenticationForm(),
+                           'error': 'Пользователь или пароль не определены. Пройди регистрацию'})
         else:
             login(request, user)
             return redirect('currenttodo')
@@ -58,6 +63,7 @@ def loginuser(request):
 
 def home(request):
     return render(request, 'home.html')
+
 
 @login_required
 def createtodo(request):
@@ -71,7 +77,8 @@ def createtodo(request):
             newtodo.save()
             return redirect('currenttodo')
         except ValueError:
-            return render(request, 'maketodo/createtodo.html', {'form': TodoForm(), 'error':'Bad data passed'})
+            return render(request, 'maketodo/createtodo.html', {'form': TodoForm(), 'error': 'Неудачный запрос на сервер'})
+
 
 @login_required
 def viewtodo(request, todo_pk):
@@ -85,7 +92,8 @@ def viewtodo(request, todo_pk):
             form.save()
             return redirect('currenttodo')
         except ValueError:
-            return render(request, 'maketodo/viewtodo.html', {'todo': todo, 'form': form, 'error':'Bad info'})
+            return render(request, 'maketodo/viewtodo.html', {'todo': todo, 'form': form, 'error': 'Bad info'})
+
 
 @login_required
 def completetodo(request, todo_pk):
@@ -94,6 +102,8 @@ def completetodo(request, todo_pk):
         todo.datecompleted = timezone.now()
         todo.save()
         return redirect('currenttodo')
+
+
 @login_required
 def deletetodo(request, todo_pk):
     todo = get_object_or_404(Todo, pk=todo_pk, user=request.user)
