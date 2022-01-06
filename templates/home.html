@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+<div class="start text-center py-5">
+    {% if user.is_authenticated %}
+        <div class="my_list_todo">
+        <a href="{% url 'currenttodo' %}" class="btn btn-info btn-lg">Мой список дел</a>
+        </div>
+    {% else %}
+       <a href="{% url 'signupuser' %}" class="btn btn-info btn-lg">Начать</a>
+    {% endif %}
+</div>
+</div>
+{% endblock content %}

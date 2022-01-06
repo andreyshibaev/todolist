@@ -1,0 +1,15 @@
+<header>
+<div class="container">
+        {% if user.is_authenticated %}
+        <div class="alert alert-success text-center mt-5 mb-5">
+            <h3>Добро пожаловать {{ user.username }}!</h3>
+            <form action="{% url 'logoutuser' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Выйти из кабинета</button>
+            </form>
+        </div>
+    {% else %}
+        <h1 class="text-center alert alert-success mt-5 mb-5">Создай свой список дел</h1>
+    {% endif %}
+</div>
+</header>
