@@ -12,7 +12,7 @@ from .models import Todo
 
 def signupuser(request):
     if request.method == 'GET':
-        return render(request, 'maketodo/maketodo.html', {'form': UserCreationForm()})
+        return render(request, 'maketodo/sign_up_user.html', {'form': UserCreationForm()})
     else:
         if request.POST['password1'] == request.POST['password2']:
             try:
@@ -21,10 +21,10 @@ def signupuser(request):
                 login(request, user)
                 return redirect('currenttodo')
             except IntegrityError:
-                return render(request, 'maketodo/maketodo.html',
+                return render(request, 'maketodo/sign_up_user.html',
                               {'form': UserCreationForm(), 'error': 'Пользователь уже существует'})
         else:
-            return render(request, 'maketodo/maketodo.html',
+            return render(request, 'maketodo/sign_up_user.html',
                           {'form': UserCreationForm(), 'error': 'Пароли не совпадают'})
 
 

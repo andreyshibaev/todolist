@@ -8,8 +8,18 @@
         </div>
         <form action="" method="POST" class="py-3">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-info">Создать</button>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="name_todo" name="title">
+                <label for="name_todo">Название заметки</label>
+            </div>
+            <div class="form-floating mb-3">
+                <textarea name="content" id="text_todo" class="form-control" style="width: 100%"></textarea>
+                <label for="text_todo">Текст заметки</label>
+            </div>
+            <label for="important_checkbox">Важная</label>
+            <input type="checkbox" name="important" class="form-check-input" id="important_checkbox">
+            <br>
+            <button type="submit" class="btn btn-info btn-lg mt-3">Создать</button>
         </form>
     </div>
 {% endblock content %}
