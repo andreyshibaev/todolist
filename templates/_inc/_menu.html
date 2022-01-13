@@ -7,32 +7,31 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Главная</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'maketodo:home' %}">Home</a>
                 </li>
             </ul>
         </div>
         {% if user.is_authenticated %}
             <ul class="navbar-nav d-flex">
                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'currenttodo' %}">Список дел</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'maketodo:currenttodo' %}">Todolist</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'completetodos' %}">Завершённые</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'maketodo:completetodos' %}">Сompleted cases</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'createtodo' %}">Создать</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'maketodo:createtodo' %}">Create</a>
                 </li>
             </ul>
         {% else %}
             <ul class="navbar-nav d-flex">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'signupuser' %}">Регистрация</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'account:signupuser' %}">Sign Up</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'loginuser' %}">Личный кабинет</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'account:loginuser' %}">Login</a>
                 </li>
             </ul>
         {% endif %}
-
     </div>
 </nav>

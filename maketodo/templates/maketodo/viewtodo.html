@@ -5,42 +5,42 @@
         <div class="text_error">
             <h3 class="badge bg-danger">{{ error }}</h3>
         </div>
-        <h3 class="alert alert-info mt-3">&#9873; {{ todo.title }}</h3>
+        <h3 class="alert alert-primary mt-3">&#9873; {{ todo.title }}</h3>
         <div class="content mb-3">
-            &#10004; {{ todo.content }}
+            {{ todo.content }}
         </div>
         <div class="buttons_actions d-flex justify-content-center py-3">
-            <form action="{% url 'completetodo' todo.id %}" method="POST">
+            <form action="{% url 'maketodo:completetodo' todo.id %}" method="POST">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-info mx-5">Завершить</button>
+                <button type="submit" class="btn btn-info mx-5">Complete</button>
             </form>
-            <form action="{% url 'deletetodo' todo.id %}" method="POST">
+            <form action="{% url 'maketodo:deletetodo' todo.id %}" method="POST">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-info mx-5">Удалить</button>
+                <button type="submit" class="btn btn-info mx-5">Delete</button>
             </form>
         </div>
     </div>
     <hr>
     <div class="container">
         <div class="edit_todo mb-3 mt-3">
-            <h3 class="text-center mb-5">Редактировать заметку</h3>
-            <form action="" method="POST">
+            <h3 class="text-center mb-5">Edit note</h3>
+            <form method="POST">
                 {% csrf_token %}
                 <div class="mb-3">
-                    <label for="name_todo" class="mb-3">Название заметки</label>
+                    <label for="name_todo" class="mb-3">Name note</label>
                     <input type="text" class="form-control" id="name_todo" name="title" value="{{ todo.title }}">
                 </div>
                 <div class="mb-3">
-                    <label for="text_todo" class="mb-3">Введите новый текст заметки</label>
+                    <label for="text_todo" class="mb-3">Enter new note text</label>
 <textarea name="content" class="form-control" rows="5" id="text_todo">
     {{ todo.content }}
                         </textarea>
                 </div>
 
-                <label for="id_important">Важная</label>
+                <label for="id_important">Important</label>
                 {{ form.important }}
                 <br>
-                <button type="submit" class="btn btn-info btn-lg mt-3">Обновить</button>
+                <button type="submit" class="btn btn-info btn-lg mt-3">Update</button>
             </form>
         </div>
     </div>

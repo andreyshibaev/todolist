@@ -3,20 +3,19 @@
 {% block content %}
     <div class="container">
         {% if todos %}
-            <h1 class="text-center mb-5">Завершённые заметки</h1>
+            <h1 class="text-center mb-5">Completed notes</h1>
         {% else %}
-         <h1 class="text-center mb-5">Завершённых заметок нет</h1>
+         <h1 class="text-center mb-5">No completed posts</h1>
         {% endif %}
         {% for todo in todos %}
             {% if todo.important %}
-                <h3 class="alert alert-danger">&#9873; {{ todo.title }} &#9866; {{ todo.content }}</h3> <a
-                    href="{% url 'viewtodo' todo.id %}">Посмотреть заметку</a>
+                <h3 class="alert alert-primary">&#9873; {{ todo.title }} &#9866; {{ todo.content }}</h3> <a
+                    href="{% url 'maketodo:viewtodo' todo.id %}">View note</a>
             {% else %}
-                <h3>&#9873; {{ todo.title }}</h3> <a href="{% url 'viewtodo' todo.id %}">Посмотреть заметку</a>
+                <h3>&#9873; {{ todo.title }}</h3> <a href="{% url 'maketodo:viewtodo' todo.id %}">View note</a>
             {% endif %}
-            <h3>Дата завершения: {{ todo.datecompleted|date:'d M Y' }}</h3>
+            <h3>Date of completion: {{ todo.datecompleted|date:'d M Y' }}</h3>
             <hr>
         {% endfor %}
-
     </div>
 {% endblock content %}

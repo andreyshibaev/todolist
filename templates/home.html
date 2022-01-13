@@ -4,10 +4,10 @@
 <div class="start text-center py-5">
     {% if user.is_authenticated %}
         <div class="my_list_todo">
-        <a href="{% url 'currenttodo' %}" class="btn btn-info btn-lg">Мой список дел</a>
+        <a href="{% url 'maketodo:currenttodo' %}" class="btn btn-info btn-lg">My todolist</a>
         </div>
     {% else %}
-       <a href="{% url 'signupuser' %}" class="btn btn-info btn-lg">Начать</a>
+       <a href="{% url 'account:signupuser' %}" class="btn btn-info btn-lg">Start</a>
     {% endif %}
 </div>
 </div>

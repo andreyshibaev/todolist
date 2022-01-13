@@ -2,14 +2,14 @@
 <div class="container">
         {% if user.is_authenticated %}
         <div class="alert alert-success text-center mt-5 mb-5">
-            <h3>Добро пожаловать {{ user.username }}!</h3>
-            <form action="{% url 'logoutuser' %}" method="post">
+            <h3>Welcome {{ user.username }}!</h3>
+            <form action="{% url 'account:logoutuser' %}" method="post">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-danger">Выйти из кабинета</button>
+                <button type="submit" class="btn btn-danger">Exit</button>
             </form>
         </div>
     {% else %}
-        <h1 class="text-center alert alert-success mt-5 mb-5">Создай свой список дел</h1>
+        <h1 class="text-center alert alert-success mt-5 mb-5">Create your todolist</h1>
     {% endif %}
 </div>
 </header>

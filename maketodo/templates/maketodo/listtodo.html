@@ -3,17 +3,17 @@
 {% block content %}
     <div class="container">
         {% if todos %}
-            <h1 class="text-center mb-3">Мои заметки</h1>
+            <h1 class="text-center mb-3">My notes</h1>
         {% else %}
-            <h1 class="text-center mb-3">Заметок нет</h1>
+            <h1 class="text-center mb-3">No notes</h1>
         {% endif %}
 
         {% for todo in todos %}
             {% if todo.important %}
-                <h3 class="alert alert-danger">&#9873; {{ todo.title }} &#9866; &#10004; {{ todo.content }}</h3>
-                <a href="{% url 'viewtodo' todo.id %}">Посмотреть заметку</a>
+                <h3 class="alert alert-primary">&#9873; {{ todo.title }} &#9866; {{ todo.content }}</h3>
+                <a href="{% url 'maketodo:viewtodo' todo.id %}">View note</a>
             {% else %}
-                <h3>{{ todo.title }}</h3> <a href="{% url 'viewtodo' todo.id %}">Посмотреть заметку</a>
+                <h3>{{ todo.title }}</h3> <a href="{% url 'maketodo:viewtodo' todo.id %}">View note</a>
             {% endif %}
             <hr>
         {% endfor %}

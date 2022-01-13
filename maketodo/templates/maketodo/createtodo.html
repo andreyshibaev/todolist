@@ -2,24 +2,24 @@
 
 {% block content %}
     <div class="container">
-        <h1>Создать заметку</h1>
+        <h1>Create note</h1>
         <div class="text_error">
             <h3 class="badge bg-danger">{{ error }}</h3>
         </div>
-        <form action="" method="POST" class="py-3">
+        <form method="POST" class="py-3">
             {% csrf_token %}
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="name_todo" name="title">
-                <label for="name_todo">Название заметки</label>
+                <label for="name_todo">Name note</label>
             </div>
             <div class="form-floating mb-3">
                 <textarea name="content" id="text_todo" class="form-control" style="width: 100%"></textarea>
-                <label for="text_todo">Текст заметки</label>
+                <label for="text_todo">Text note</label>
             </div>
-            <label for="important_checkbox">Важная</label>
+            <label for="important_checkbox">Important</label>
             <input type="checkbox" name="important" class="form-check-input" id="important_checkbox">
             <br>
-            <button type="submit" class="btn btn-info btn-lg mt-3">Создать</button>
+            <button type="submit" class="btn btn-info btn-lg mt-3">Create</button>
         </form>
     </div>
 {% endblock content %}
